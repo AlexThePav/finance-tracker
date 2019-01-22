@@ -24,9 +24,9 @@ class UsersController < ApplicationController
   def add_friend
     @friend = User.find(params[:friend])
     current_user.friendships.build(friend_id: @friend.id)
-    @friend.friendships.build(user_id: @friend.id, friend_id: current_user.id) # to figure out why it doesn't work
+    @friend.friendships.build(user_id: @friend.id, friend_id: current_user.id)
 
-    if current_user.save
+    if current_user.save && @friend.save
       flash[:success] = "Friend was successfully added"
     else
       flash[:danger] = "There was something wrong with the friend request"
