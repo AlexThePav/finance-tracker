@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       flash.now[:danger] = "No users match this search criteria" if @users.blank?
     end
     respond_to do |format|
-      format.js { render partial: 'friends/result' }
+      format.js { render partial: 'friends/result', obj: @users }
     end
   end
 
@@ -37,6 +37,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_stocks = @user.stocks
+    @users_friends = @user.friends
+    @users_friends = current_user.except_current_user(@users_friends)
   end
   
   

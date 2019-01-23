@@ -1,4 +1,4 @@
-<h2>User Detailsd</h2>
+<h2>User Details</h2>
 
 <dl class="dl-horizontal">
   <dt><strong>Full Name</strong></dt>
@@ -12,5 +12,8 @@
 <% else %>
   <p class="lead">This user is not tracking any stocks</p>
 <% end %>
+
+<h3> <%= @user.full_name %>'s friends </h2>
+<%= render 'friends/result', obj: @users_friends  %>
 
 <%= link_to 'Back', my_friends_path, class: "btn btn-primary" %>
